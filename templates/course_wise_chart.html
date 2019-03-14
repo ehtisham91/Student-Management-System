@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <h3>{{ msg|safe }}</h3>
+    {% for chart in chart_list  %}
+        <div id="{{ forloop.counter0 }}"></div>
+
+        <script>
+          Highcharts.chart('{{ forloop.counter0 }}', {{ chart|safe }});
+        </script>
+    {% endfor %}
+
+{% endblock %}

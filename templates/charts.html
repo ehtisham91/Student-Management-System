@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div style="margin: 1em; border-style: outset;">
+                    <h4 style="text-align: center">Select student to view Bar chart</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                    {{ form|crispy }}
+                        <button type="submit">View Bar Chart</button>
+                    </form>
+                    <br><br/>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div style="margin: 1em; border-style: outset;">
+                  <div id="pie" data-url="{% url 'chart_data' %}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js_links %}
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $.ajax({
+      url: $("#pie").attr("data-url"),
+      dataType: 'json',
+      success: function (data) {
+        Highcharts.chart("pie", data);
+      }
+    });
+  </script>
+{% endblock %}
+
+</body>
+</html>

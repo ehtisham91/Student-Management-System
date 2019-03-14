@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            p { display: inline }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+               /* text-align: right;*/
+               padding: 10px 20px 0px 20px;
+            }
+            .title span {
+                color: blue;
+            }
+            .details {
+                padding: 10px 20px 0px 20px;
+                text-align: left !important;
+                /*margin-left: 40%;*/
+            }
+            .hrItem {
+                border: none;
+                height: 1px;
+                /* Set the hr color */
+                color: blue; /* old IE */
+                background-color: #fff; /* Modern Browsers */
+            }
+            .back_color {
+              background-color: #dddddd;
+            }
+            table, th, td {
+              border: 0.2px solid black;
+              border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                font-weight: 200;
+                font-size: 14px;
+            }
+            th {
+              text-align: left;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>Result Card</p>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <p style="color: blue">Name: </p>           {{ data.student.name }}                  <br/>
+            <p style="color: blue">Course: </p>         {{ data.course }}                   <br/>
+            <p style="color: blue">DOB: </p>            {{ data.student.birthDay|date }}    <br/>
+            <p style="color: blue">Course Date: </p>    {{ data.date_from|date }}           <br/>
+            <p style="color: blue">Registration No: </p>{{ data.student.registrationNo }}   <br/>
+        </div>
+        <br/>
+    <div class='details'>
+        <table style="width:100%;">
+          <tr>
+            <th style="color: blue;">Subject Name</th>
+            <th style="color: blue">Obtained Marks</th>
+            <th style="color: blue">Maximum Marks</th>
+            <th style="color: blue">Percentage</th>
+          </tr>
+            {% for obj in data.detail.all %}
+          <tr>
+            <td>{{ obj.subject|capfirst }}</td>
+            <td>{{ obj.obtained_marks }}</td>
+            <td>{{ obj.total_marks }}</td>
+            <td>{{ obj.calculate_percentage }}</td>
+          </tr>
+            {% endfor %}
+          <tr style="background-color: #dddddd;">
+            <td>-----</td>
+              {% for total in  data.calculate_final_marks %}
+                <td>{{ total}}</td>
+              {% endfor %}
+          </tr>
+        </table>
+    </div>
+    </body>
+</html>

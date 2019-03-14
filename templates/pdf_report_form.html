@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<u>  <h2 style="text-align: center">MarkSheet Form</h2>
+</u>
+    <br/><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div style="margin: 1em; border-style: outset;">
+                <h3 style="text-align: center"> View Pdf Marksheet </h3>
+                  <form method="post" id="markSheetForm" data-courses-url="{% url 'result:ajax_load_courses' %}" novalidate>
+                    {% csrf_token %}
+                    <table>
+                      {{ m_form|crispy }}
+                    </table>
+                    <button type="submit">Create Marksheet</button>
+                  </form>
+                    <br/>
+                </div>
+            </div>
+
+            <div class="col-lg-6" >
+                <div style="margin: 1em; border-style: outset;">
+                <h3 style="text-align: center"> View Report </h3>
+                  <form method="post" id="subjectForm" novalidate>
+                    {% csrf_token %}
+                    <table>
+                      {{ s_form|crispy }}
+                    </table>
+                    <button type="submit">View Report</button>
+                  </form>
+                <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_student").change(function () {
+      var url = $("#markSheetForm").attr("data-courses-url");  // get the url of the `load_cities` view
+      var studentId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'student': studentId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_course").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+
+{%endblock%}

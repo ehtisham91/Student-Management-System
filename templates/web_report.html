@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br/>
+    <div class="container">
+    {% if not subjects_list %}
+        <script>alert("No Marksheet detail are found against this subject.!");</script>
+    {% else %}
+      <h4>Subject wise students marks</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Course Name</th>
+            <th>Total Marks</th>
+            <th>Obtained Marks</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects_list %}
+          <tr>
+            <td>{{ subject.markSheet.get_student_name }}</td>
+            <td>{{ subject.markSheet.get_course_name }}</td>
+            <td>{{ subject.total_marks }}</td>
+            <td>{{ subject.obtained_marks }}</td>
+            <td>{{ subject.calculate_percentage }}%</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+</div>
+{% endblock %}
+
+

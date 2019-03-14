@@ -1,0 +1,76 @@
+   {% load staticfiles %}
+
+   <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container" style="color: white">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">SMS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="{% url 'chart' %}">Graph/Analytic</a></li>
+              <li><a href="{% url 'result:report' %}">Reports</a></li>
+
+       <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'result:create' %}">Create Marksheet</a></li>
+            <li><a href="{% url 'student:create' %}">Create Student</a></li>
+            <li><a href="{% url 'course:create' %}">Create Course</a></li>
+            <li><a href="{% url 'course:create_subject' %}">Create Subject</a></li>
+          </ul>
+        </li>
+
+
+
+          {% if request.user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+             {% if not request.user.is_authenticated and not "/accounts/login" in request.get_full_path %}
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+
+                      <form class='navbar-form' method='POST' action='{% url "login" %}'>{% csrf_token %}
+                        <div class='form-group'>
+                            <input type='text' class='form-control' name='username' placeholder='Username' />
+                        </div>
+                        <div class='form-group'>
+                            <input type='password' class='form-control' name='password' placeholder='Password' />
+                        </div>
+                        <button type='submit' class='btn btn-default btn-block'>Login</button>
+                    </form>
+
+                  </ul>
+                </li>
+                 {% endif %}
+
+            {% endif %}
+
+          </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+
+          <form class="navbar-form navbar-left" method="GET" role="search" action='/search'>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search Student" name="q" value='{{ request.GET.q }}'>
+            </div>
+           <!--  <button type="submit" class="btn btn-default">Submit</button> -->
+          </form>
+
+          </ul>
+
+
+
+
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
+
+<style>
+{% block style %}
+.navbar-static-top {
+	margin-bottom: 0px !important;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: left;
+}
+
+{% endblock %}
+</style>
+
+
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div style="margin: 1em; padding: 1em; border-style: outset;">
+                <h4 style="text-align: center">Subjects</h4>
+            <table style="width:100%">
+              <tr>
+                <th>Name</th>
+                <th>Total Marks</th>
+              </tr>
+                {% for obj in subjects %}
+                  <tr>
+                    <td>{{ obj.name }}</td>
+                    <td>{{ obj.marks }}</td>
+                  </tr>
+                {% endfor %}
+            </table>
+            </div>
+        </div>
+        <div class="col-lg-4">
+                <div style="margin: 1em; padding: 1em; border-style: outset;">
+                <h4 style="text-align: center">Courses</h4>
+                <table style="width:100%">
+                  <tr>
+                    <th>Number</th>
+                    <th>Title</th>
+                    <th>Total Marks</th>
+                  </tr>
+                    {% for obj in courses %}
+                      <tr>
+                        <td>{{ obj.number }}</td>
+                        <td>{{ obj.title }}</td>
+                        <td>{{ obj.total_marks }}</td>
+                      </tr>
+                    {% endfor %}
+            </table>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div style="margin: 1em; padding: 1em; border-style: outset;">
+                <h4 style="text-align: center">Students</h4>
+                <table style="width:100%">
+                  <tr>
+                    <th>Name</th>
+                    <th>RegistrationNo</th>
+                    <th>Qualification</th>
+                  </tr>
+                    {% for obj in students %}
+                      <tr>
+                        <td>{{ obj.name }}</td>
+                        <td>{{ obj.registrationNo }}</td>
+                        <td>{{ obj.qualification }}</td>
+                      </tr>
+                    {% endfor %}
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

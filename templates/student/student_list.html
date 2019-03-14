@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br/>
+    <div class="container">
+  <h4>Students</h4>
+    {% if query_list %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Student Name</th>
+                <th>Registration No</th>
+                <th>DOB</th>
+                <th>qualification</th>
+                <th>Courses</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for student in query_list %}
+              <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.registrationNo }}</td>
+                <td>{{ student.birthDay }}</td>
+                <td>{{ student.qualification }}</td>
+                <td>
+                    {% for course in student.course.all  %}
+                        {{ course.title }},
+                    {% endfor %}
+                  </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+     {% else %}
+         <script>alert("Nothing found!");</script>
+    {% endif %}
+</div>
+{% endblock %}
+
+

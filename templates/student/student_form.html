@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+  <h2>MarkSheet Form</h2>
+
+<form  method="post">
+  {%csrf_token %}
+  {{ form|crispy }}
+  <input type="submit" class="btn btn-primary" name="" value="Submit">
+
+</form>
+{%endblock%}
