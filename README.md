@@ -23,4 +23,4 @@ username: admin
 password: django123
 
 
-> Note: First add subject, then course, then student and then markssher/result card of him..
+> Note: First add subject, then course, then student and then marksheet/result card of him..
