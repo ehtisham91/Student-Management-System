@@ -10,7 +10,7 @@ for linux/ubuntu run "virtualenv ."
 
 After installing and activating virtual environment, run below command
 
->pip install requirements.txt
+>pip install -r requirements.txt
 
 then run
 > python manage.py runserver
