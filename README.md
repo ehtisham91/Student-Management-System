@@ -4,9 +4,8 @@
 
 First of all install virtual environment. 
 
-for windows run "Virtualenv  envir"
+ run "Virtualenv  envir"
 
-for linux/ubuntu run "virtualenv ."
 
 After installing and activating virtual environment, run below command
 
