@@ -2,7 +2,7 @@ Django==2.1
 django-crispy-forms==1.7.2
 html5lib==1.0.1
 Pillow==5.4.1
-PyPDF2==1.26.0
+PyPDF2==1.27.9
 pytz==2018.9
 reportlab==3.5.13
 six==1.12.0
